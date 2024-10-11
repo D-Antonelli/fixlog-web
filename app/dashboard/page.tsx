@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect } from 'react';
-import IssueForm from '../ui/dashboard/issue-form';
-import IssueList from '../ui/dashboard/issue-list';
-import IssueDetails from '../ui/dashboard/issue-details';
+import IssueForm from '@/components/ui/dashboard/issue-form';
+import IssueList from '@/components/ui/dashboard/issue-list';
+import IssueDetails from '@/components/ui/dashboard/issue-details';
 
 export interface Issue {
   id: number;
@@ -12,6 +12,8 @@ export interface Issue {
   category: string;
   status: string;
   date: string;
+  fileNames: string[];
+  cidList: string[]
 }
 
 export default function RenterDashboard() {
@@ -19,23 +21,31 @@ export default function RenterDashboard() {
   const [selectedIssue, setSelectedIssue] = useState<Issue | null>(null);
 
   useEffect(() => {
-    // Fetch issues data from API (dummy data for now)
+    // Fetch issues data from API or use dummy data
     const dummyIssues: Issue[] = [
-      { 
-        id: 1, 
-        title: 'Leaky Faucet', 
-        description: 'There is a continuous leak under the kitchen sink.', 
-        category: 'Plumbing', 
-        status: 'In Progress', 
-        date: '2024-10-05' 
+      {
+        id: 1,
+        title: 'Leaky Faucet',
+        description: 'There is a continuous leak under the kitchen sink.',
+        category: 'Plumbing',
+        status: 'In Progress',
+        date: '2024-10-05',
+        fileNames: ["Screenshot 2024-10-11 at 12.26.26.png", "Screenshot 2024-10-10 at 12.34.46.png"],
+        cidList: [
+          'bafybeib5ecqf7lwhallnkhm7u4b7nswh7fsl5m2wvw27by7zdcmwocvfia',
+        ],
       },
-      { 
-        id: 2, 
-        title: 'Broken Heater', 
-        description: 'The heater stopped working and it is very cold.', 
-        category: 'Appliance', 
-        status: 'Resolved', 
-        date: '2024-09-28' 
+      {
+        id: 2,
+        title: 'Broken Heater',
+        description: 'The heater stopped working and it is very cold.',
+        category: 'Appliance',
+        status: 'Resolved',
+        date: '2024-09-28',
+        fileNames: [],
+        cidList: [
+          'bafybeig5xfc7zzcpdnfgisgr3r3epfs2r3tmxim3c32kur5xewyfq2lkne',
+        ],
       },
     ];
     setIssues(dummyIssues);

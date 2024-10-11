@@ -1,4 +1,6 @@
 import { Issue } from "@/app/dashboard/page";
+import Files from "@/components/Files";
+import { env } from "process";
 
 interface IssueDetailsProps {
   issue: Issue;
@@ -6,6 +8,14 @@ interface IssueDetailsProps {
 }
 
 export default function IssueDetails({ issue, onBack }: IssueDetailsProps) {
+const renderMedia = (alt: string) => {
+  return issue.fileNames.map(name => 
+    (
+      <Files cid={issue.cidList} alt={alt} fileName={name} id={name} />
+    ));
+}
+  
+
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
       <button
@@ -24,6 +34,14 @@ export default function IssueDetails({ issue, onBack }: IssueDetailsProps) {
 
       <h3 className="text-lg font-semibold mb-2">Status</h3>
       <p>{issue.status}</p>
+       {issue.cidList && issue.cidList.length > 0 && (
+        <>
+          <h3 className="text-lg font-semibold mb-2">Attached Media</h3>
+          <div className="media-gallery">
+            {renderMedia(issue.title)}
+          </div>
+        </>
+      )}
     </div>
   );
 }
