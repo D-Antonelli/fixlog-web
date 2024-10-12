@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ChangeEvent, FormEvent, useRef } from 'react';
+import { useState, ChangeEvent, FormEvent, useRef, useEffect } from 'react';
 import { Issue } from '@/app/dashboard/page';
 import FilePreviewList from './file-preview-list';
 import { returnFileSize, validFileType } from '@/utils/fileUtils';
@@ -44,7 +44,21 @@ export default function IssueForm({ setIssues }: IssueFormProps) {
     setPreview(<FilePreviewList files={validFiles} totalSize={returnFileSize(totalSize)} />);
   };
 
-  const uploadFiles = async (filesToUpload: File[]) => {
+    // Convert files to base64 and save to localStorage
+  const saveFilesToLocalStorage = (filesToSave: File[]) => {
+    filesToSave.forEach(file => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (reader.result) {
+          // Store file as base64 string in localStorage using file name as the key
+          localStorage.setItem(file.name, reader.result as string);
+        }
+      };
+      reader.readAsDataURL(file); // Convert file to base64
+    });
+  };
+
+  const uploadFilesToPinata = async (filesToUpload: File[]) => {
     try {
       setUploading(true);
       const formData = new FormData();
@@ -61,10 +75,46 @@ export default function IssueForm({ setIssues }: IssueFormProps) {
     }
   };
 
+  const handleSubmissionToLocalStorage  = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const newIssue: Issue = {
+        id: Math.random(),
+        title,
+        description,
+        category,
+        status: 'Reported',
+        date: new Date().toISOString().slice(0, 10),
+        fileNames: files.map(file => file.name),
+        cidList: [],
+      };
+
+      // Save files locally (in base64 format)
+      saveFilesToLocalStorage(files);
+      // Update the local state and localStorage
+      setIssues(prevIssues => {
+        const updatedIssues = [newIssue, ...prevIssues];
+        localStorage.setItem('issues', JSON.stringify(updatedIssues)); // Save issues to localStorage
+        return updatedIssues;
+      });
+
+      // Reset form
+      setTitle('');
+      setDescription('');
+      setCategory('');
+      setFiles([]);
+      setPreview(null);
+      if (inputFile.current) inputFile.current.value = '';
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Error submitting the form. Please try again.');
+    }
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const cid = await uploadFiles(files);
+      const cid = await uploadFilesToPinata(files);
       setCids([cid]);
 
       const newIssue: Issue = {
@@ -94,7 +144,7 @@ export default function IssueForm({ setIssues }: IssueFormProps) {
   };
 
   return (
-    <form className="bg-white p-6 rounded-lg shadow-md" onSubmit={handleSubmit}>
+    <form className="bg-white p-6 rounded-lg shadow-md" onSubmit={handleSubmissionToLocalStorage}>
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-700 mb-2">What’s the title of the issue?</label>
         <input

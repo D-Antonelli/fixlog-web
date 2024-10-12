@@ -43,6 +43,7 @@ export default function LoginForm() {
           className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="user@fixlog.com"
           value="user@fixlog.com"
+          readOnly
           required
         />
       </div>
@@ -61,6 +62,7 @@ export default function LoginForm() {
           required
           minLength={6}
           value={123456}
+          readOnly
         />
       </div>
 

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState, useEffect } from 'react';
 import IssueForm from '@/components/ui/dashboard/issue-form';
@@ -14,15 +14,15 @@ export interface Issue {
   status: string;
   date: string;
   fileNames: string[];
-  cidList: string[]
+  cidList: string[];
 }
 
 export default function RenterDashboard() {
   const [issues, setIssues] = useState<Issue[]>([]);
   const [selectedIssue, setSelectedIssue] = useState<Issue | null>(null);
 
-  useEffect(() => {
-    // Fetch issues data from API or use dummy data
+   useEffect(() => {
+    // Dummy issues
     const dummyIssues: Issue[] = [
       {
         id: 1,
@@ -49,7 +49,19 @@ export default function RenterDashboard() {
         ],
       },
     ];
-    setIssues(dummyIssues);
+
+    // Check if issues already exist in localStorage
+    const savedIssues = localStorage.getItem('issues');
+
+    if (!savedIssues) {
+      // If no issues exist in localStorage, initialize with dummy data
+      localStorage.setItem('issues', JSON.stringify(dummyIssues));
+      setIssues(dummyIssues); // Set issues to state
+    } else {
+      // Load issues from localStorage
+      const localIssues = JSON.parse(savedIssues);
+      setIssues(localIssues);
+    }
   }, []);
 
   const handleIssueClick = (issue: Issue) => {
@@ -65,7 +77,9 @@ export default function RenterDashboard() {
       <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-12">
           <HomeIcon className="h-24 w-24 m-0 m-auto" />
-          10 Victoria Road</h1>
+          10 Victoria Road
+        </h1>
+
         {selectedIssue ? (
           <IssueDetails issue={selectedIssue} onBack={handleBackToList} />
         ) : (
