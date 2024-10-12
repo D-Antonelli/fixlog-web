@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import IssueForm from '@/components/ui/dashboard/issue-form';
 import IssueList from '@/components/ui/dashboard/issue-list';
 import IssueDetails from '@/components/ui/dashboard/issue-details';
+import { HomeIcon } from '@heroicons/react/24/outline';
 
 export interface Issue {
   id: number;
@@ -62,8 +63,9 @@ export default function RenterDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-gray-50 p-8">
       <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Renter Dashboard</h1>
-
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-12">
+          <HomeIcon className="h-24 w-24 m-0 m-auto" />
+          10 Victoria Road</h1>
         {selectedIssue ? (
           <IssueDetails issue={selectedIssue} onBack={handleBackToList} />
         ) : (

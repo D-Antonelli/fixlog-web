@@ -32,8 +32,8 @@ export default function IssueForm({ setIssues }: IssueFormProps) {
         alert(`File ${file.name} is not a valid file type.`);
         return;
       }
-      if (totalSize > 5 * 1024 * 1024) {
-        alert('Total file size must not exceed 5MB.');
+      if (totalSize > 2 * 1024 * 1024) {
+        alert('Total file size must not exceed 2MB.');
         return;
       }
       validFiles.push(file);
@@ -136,7 +136,7 @@ export default function IssueForm({ setIssues }: IssueFormProps) {
 
       <div className="mb-4">
         <label htmlFor="image_uploads" className="block text-sm font-medium text-gray-700 mb-2">
-          Upload any photos or videos that can help us understand the issue (PNG, JPG, up to 5MB)
+          Upload any photos or videos that can help us understand the issue (PNG, JPG, up to 2MB)
         </label>
         <input
           type="file"

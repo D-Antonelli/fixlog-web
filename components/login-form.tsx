@@ -42,6 +42,7 @@ export default function LoginForm() {
           id="email"
           className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="user@fixlog.com"
+          value="user@fixlog.com"
           required
         />
       </div>
@@ -59,6 +60,7 @@ export default function LoginForm() {
           placeholder="••••••••"
           required
           minLength={6}
+          value={123456}
         />
       </div>
 

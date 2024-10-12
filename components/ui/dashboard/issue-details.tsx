@@ -49,14 +49,16 @@ export default function IssueDetails({ issue, onBack }: IssueDetailsProps) {
       <h3 className="text-lg font-semibold mb-2 text-gray-700">Current Status</h3>
       <p className="mb-4 text-gray-800">{issue.status}</p>
 
-      {/* Media Section */}
-      {issue.cidList && issue.cidList.length > 0 && (
+       {/* Media Section */}
+      {issue.cidList && issue.cidList.length > 0 ? (
         <>
           <h3 className="text-lg font-semibold mb-4 text-gray-700">Photos</h3>
           <div className="media-gallery grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {renderMedia(issue.title)}
           </div>
         </>
+      ) : (
+        <p className="text-gray-600">No media files attached to this issue.</p> // Fallback for no media
       )}
     </div>
   );

@@ -24,7 +24,7 @@ export default function LoginPage() {
         <LoginForm />
 
         <div className="text-xs text-gray-400 mt-4">
-          username: <strong>user@nextmail.com</strong> | password: <strong>123456</strong>
+          username: <strong>user@fixlog.com</strong> | password: <strong>123456</strong>
         </div>
       </div>
     </main>
