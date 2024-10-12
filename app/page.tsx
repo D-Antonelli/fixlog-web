@@ -34,7 +34,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/login"
-                  className="bg-green-500 text-white rounded-lg px-4 py-3 md:px-5 md:py-3 text-base md:text-lg transition hover:bg-green-400"
+                  className="bg-green-500 text-white font-bold rounded-lg px-4 py-3 md:px-5 md:py-3 text-base md:text-lg transition hover:bg-green-400"
                 >
                   Get Started Today
                 </Link>
@@ -47,6 +47,7 @@ export default function Home() {
                   height={500}
                   width={500}
                   className="max-w-full h-auto"
+                  priority={false}
                 />
               </div>
             </div>

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState, ChangeEvent, FormEvent, useRef } from 'react';
 import { Issue } from '@/app/dashboard/page';
@@ -32,8 +32,8 @@ export default function IssueForm({ setIssues }: IssueFormProps) {
         alert(`File ${file.name} is not a valid file type.`);
         return;
       }
-      if (totalSize > 2 * 1024 * 1024) {
-        alert('Total file size must not exceed 2MB.');
+      if (totalSize > 5 * 1024 * 1024) {
+        alert('Total file size must not exceed 5MB.');
         return;
       }
       validFiles.push(file);
@@ -93,48 +93,51 @@ export default function IssueForm({ setIssues }: IssueFormProps) {
     }
   };
 
-
   return (
     <form className="bg-white p-6 rounded-lg shadow-md" onSubmit={handleSubmit}>
       <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 mb-2">Issue Title</label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">What’s the title of the issue?</label>
         <input
           type="text"
           className="w-full p-2 border border-gray-300 rounded-md"
           value={title}
+          placeholder="Give a short and clear title"
           onChange={(e) => setTitle(e.target.value)}
           required
         />
       </div>
 
       <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Can you describe the issue in more detail?</label>
         <textarea
           className="w-full p-2 border border-gray-300 rounded-md"
           value={description}
+          placeholder="Provide a detailed description of what’s wrong"
           onChange={(e) => setDescription(e.target.value)}
           required
         />
       </div>
 
       <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">What category does this issue fall under?</label>
         <select
           className="w-full p-2 border border-gray-300 rounded-md"
           value={category}
-          onChange={(e) => setCategory(e.target.value) }
+          onChange={(e) => setCategory(e.target.value)}
           required
         >
-          <option value="">Select a Category</option>
-          <option value="plumbing">Plumbing</option>
-          <option value="electrical">Electrical</option>
-          <option value="appliance">Appliance</option>
-          <option value="general">General</option>
+          <option value="">Please select a category</option>
+          <option value="plumbing">Plumbing Issues</option>
+          <option value="electrical">Electrical Problems</option>
+          <option value="appliance">Appliance Issues</option>
+          <option value="general">General Maintenance</option>
         </select>
       </div>
 
       <div className="mb-4">
-        <label htmlFor="image_uploads">Choose images to upload (PNG, JPG). Allowed total file size is 2MB</label>
+        <label htmlFor="image_uploads" className="block text-sm font-medium text-gray-700 mb-2">
+          Upload any photos or videos that can help us understand the issue (PNG, JPG, up to 5MB)
+        </label>
         <input
           type="file"
           ref={inputFile}
@@ -143,17 +146,18 @@ export default function IssueForm({ setIssues }: IssueFormProps) {
           className="w-full"
           name="image_uploads"
           accept=".jpg, .jpeg, .png"
-          multiple />
+          multiple
+        />
       </div>
 
       {preview && <div className="preview mb-4">{preview}</div>}      
 
       <button
         type="submit"
-        className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
+        className="mt-4 w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
         disabled={uploading}
       >
-        {uploading ? "Submitting..." : "Submit"}
+        {uploading ? "Submitting..." : "Submit Issue"}
       </button>
     </form>
   );
