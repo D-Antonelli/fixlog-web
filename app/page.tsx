@@ -25,7 +25,7 @@ export default function Home() {
             </div>
             {/* Hero Section */}
             <div className="w-full flex flex-col-reverse md:flex-row justify-between items-center gap-12 mt-6">
-              <div className="md:w-1/2 w-full flex flex-col gap-4 text-center md:text-left">
+              <div className="md:w-1/2 w-full flex flex-col gap-8 text-center md:text-left">
                 <h1 className="text-3xl md:text-5xl font-bold text-gray-800">
                   Track Property Maintenance Seamlessly
                 </h1>
@@ -52,17 +52,17 @@ export default function Home() {
               </div>
             </div>
           </div>
-          {/* Footer */}
-          <footer className="bg-blue-500 w-full py-4 mt-8">
-            <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between text-white text-center md:text-left">
-              <p className="text-sm">&copy; 2024 FixLog | All Rights Reserved</p>
-              <div className="flex gap-4 justify-center md:justify-end mt-2 md:mt-0">
-                <a href="" target="_blank">Twitter</a>
-                <a href="" target="_blank">Discord</a>
-                <a href="" target="_blank">YouTube</a>
-              </div>
+         {/* Footer */}
+        <footer className="bg-blue-500 w-full py-4 mt-8">
+          <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between text-white text-center md:text-left">
+            <p className="text-sm">&copy; 2024 FixLog | All Rights Reserved</p>
+            <div className="flex flex-col items-center md:flex-row md:justify-end gap-4 mt-2 md:mt-0">
+              <a href="https://www.linkedin.com/in/derya-a-antonelli/" target="_blank" className="hover:underline">LinkedIn</a>
+              <a href="https://github.com/D-Antonelli" target="_blank" className="hover:underline">GitHub</a>
+              <a href="https://x.com/deryaantonelli" target="_blank" className="hover:underline">Twitter</a>
             </div>
-          </footer>
+          </div>
+        </footer>
         </div>
       </main>
     </>
