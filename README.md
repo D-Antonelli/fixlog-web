@@ -1,33 +1,27 @@
-## Getting Started
+# FixLog Demo - Property Maintenance Tracker
 
-This is the TypeScript + Tailwind CSS boilerplate Pinata starter template.
+This full-stack web application was built as part of the [Pinata](https://pinata.cloud/) Hackathon Challenge hosted by [DEV.to](https://dev.to/t/hackathon). It took around 24 hours to develop and submit this project. Leveraged Pinata SDK to upload media files (images) to the IPFS network via Next.js API routes. Hosted on Vercel.
 
-Create a new Pinata project using this command:
 
-```
-npx create-pinata-app
-```
+## Tech stack
+- Frontend: Next.js, React, TypeScript
+- Backend: Next.js API routes, Pinata IPFS, PostgreSQL (for authentication and user data)
+- File Upload: Pinata SDK (for security, dummy data only)
+- Authentication: NextAuth.js (email/password)
 
-Follow the prompts in the command line to create the project. Once complete, change into the new project directory and run the app with the following command:
 
-```
-npm run dev
-```
+## Screenshots
 
-You can edit the `pages/index.js` file and the API route file `pages/api/files` to see the Pinata functionality and extend it or make changes.
+### Homepage
+![homepage](./public/github/landing.png)
 
-### Environment Variables
+### Login
+![login](./public/github/login.png)
 
-This project makes use of both public and private environment variables. The private environment variables are used to protect sensitive data like your Pinata API keys. The public environment variables are convenient central variable housing.
+### Renter Dashboard
+![dashboard](./public/github/dashboard.gif)
 
-Read more about [how environment variables work with Next.js here](https://nextjs.org/docs/pages/building-your-application/configuring/environment-variables).
 
-There is a `.env.sample` file you can copy and rename to `.env.local` for use in your project. Be sure to fill out the environment variable values in the `.env.local` file with your actual values.
-
-### Learn More
-
-For more information about building apps with Pinata and IPFS, check out the following resources:
-
-- [Pinata Docs](https://docs.pinata.cloud)
-- [Pinata Tutorials](https://medium.com/pinata)
-- [Quick Start Recipes](https://docs.pinata.cloud/recipes)
+## Limitations
+- **Storage capacity**: For demo version issue submission form data is stored in local storage, which can hold up to 10MB data. Thus, attempting to attach large files may fail. 
+- **Login**: You can login with test account only. 
