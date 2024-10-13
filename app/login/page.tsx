@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import LoginForm from '@/components/login-form';
+import Link from 'next/link';
 
 export default function LoginPage() {
   return (
@@ -24,7 +25,7 @@ export default function LoginPage() {
         <LoginForm />
 
         <div className="text-xs text-gray-400 mt-4">
-          username: <strong>user@fixlog.com</strong> | password: <strong>123456</strong>
+          Having issues signing in? Feel free to report on <Link href="https://github.com/D-Antonelli/pinata-hackathon/issues">GitHub page</Link>
         </div>
       </div>
     </main>
