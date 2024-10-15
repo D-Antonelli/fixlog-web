@@ -27,7 +27,7 @@ export default function RenterDashboard() {
       {
         id: 1,
         title: 'Leaky Faucet',
-        description: 'There is a continuous leak under the kitchen sink.',
+        description: 'Bathroom faucet is leaking. Needing a plumber to have a look.',
         category: 'Plumbing',
         status: 'In Progress',
         date: '2024-10-05',
@@ -73,7 +73,7 @@ export default function RenterDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-gray-50 p-8">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-gray-50 md:p-8">
       <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-12">
           <HomeIcon className="h-24 w-24 m-0 m-auto" />

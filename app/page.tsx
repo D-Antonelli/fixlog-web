@@ -16,7 +16,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/property-icon.png" />
       </Head>
-      <main className="w-full h-screen flex flex-col justify-center items-center">
+      <main className="w-full md-h-screen flex flex-col justify-center items-center">
         <div className="w-full h-full bg-gradient-to-b from-blue-100 to-yellow-50 flex flex-col justify-center items-center">
           <div className="max-w-screen-xl h-full px-6 sm:px-4">
             {/* Logo Section */}
